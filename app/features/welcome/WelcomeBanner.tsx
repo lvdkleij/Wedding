@@ -29,7 +29,7 @@ const WelcomeBanner: React.FC<WelcomeBannerProps> = ({ message }) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 h-screen flex items-center justify-center bg-red-100 text-red-800 font-bold text-2xl z-50 transition-transform duration-[${transitionDuration}ms] ease-in-out ${
+      className={`fixed top-0 left-0 right-0 h-screen flex items-center justify-center bg-red-100 text-red-800 font-bold text-2xl z-50 transition-transform duration-[1000ms] ease-in-out ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
       role="alert"
