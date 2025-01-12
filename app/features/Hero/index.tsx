@@ -1,11 +1,10 @@
 import React from 'react';
-import styles from './travel.module.css';
 import DefaultPageSection from '~/layout/DefaultPageSection';
 
 const Travel: React.FC = () => {
   return (
     <DefaultPageSection>
-      <section id="travel" className={styles.feature}>
+      <section id="travel">
         <h2>Travel Options</h2>
         <p>We welcome guests travelling by any means. Below are some options:</p>
         <ul>
