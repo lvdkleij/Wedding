@@ -1,32 +1,42 @@
 import React from 'react';
 import DefaultPageSection from '~/layout/DefaultPageSection';
 
-const Travel: React.FC = () => {
+const Index: React.FC = () => {
   return (
-    <DefaultPageSection>
-      <section id="travel">
-        <h2>Travel Options</h2>
-        <p>We welcome guests travelling by any means. Below are some options:</p>
-        <ul>
-          <li>
-            <strong>By Car:</strong> Directions and parking information.
-          </li>
-          <li>
-            <strong>By Plane:</strong> Nearest airports and shuttle services.
-          </li>
-          <li>
-            <strong>By Train:</strong> Train station details and local transfers.
-          </li>
-          <li>
-            <strong>By Bike:</strong> Cycling routes and bike parking.
-          </li>
-          <li>
-            <strong>On Foot:</strong> Walking directions from nearby landmarks.
-          </li>
-        </ul>
-      </section>
+    <DefaultPageSection className={` h-[41vw] min-h-[49rem] max-h-[57rem] flex bg-white py-12 overflow-hidden `}>
+      <div className=" basis-[50%] shrink-0 lg:basis-[48%] self-start">
+        <div className="mx-auto max-w-[70rem] grid grid-cols-2 grid-rows-2 h-full gap-x-6 ">
+          <div className="max-lg:hidden col-span-1 row-start-1 row-end-2">
+            <div className="bg-slate-50 w-full -ml-[70%] h-[16rem]"></div>
+          </div>
+          <div className="col-span-1 row-start-2 row-end-3">
+            <div className="bg-slate-50 ml-auto h-[19rem] max-lg:w-full w-4/6 max-w-[20rem]"></div>
+          </div>
+          <div className="col-span-1 row-span-2 flex items-center">
+            <div className="bg-slate-50 w-full h-[32rem] "></div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grow flex">
+        <div className="grow flex items-center z-10">
+          <div className="px-12 py-6">
+            <div className="-ml-[8rem] mb-12">
+              <h1 className="flex flex-col">
+                <span className="text-sm mb-2">CELEBRATE WITH US</span>
+                <span className="text-5xl">LUCAS & MELISA’S WEDDING</span>
+              </h1>
+            </div>
+            <p className="mb-12">Amandine & Max, we’d love for you to join us in celebrating our marriage!</p>
+            <button className="px-8 py-4 border-solid border border-black">Discover the details</button>
+          </div>
+        </div>
+        <div className="basis-[30%] hidden lg:flex items-end">
+          <div className="bg-slate-50 h-[32rem] -mr-[70%] w-full"></div>
+        </div>
+      </div>
     </DefaultPageSection>
   );
 };
 
-export default Travel;
+export default Index;
