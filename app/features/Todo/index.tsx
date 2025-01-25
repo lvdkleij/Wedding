@@ -1,11 +1,13 @@
 import React from 'react';
 import DefaultPageSection from '~/layout/DefaultPageSection';
+import Todo2 from './Todo2';
+import Todo1 from './Todo1';
 
 const Index: React.FC = () => {
   return (
-    <DefaultPageSection className="flex h-[60rem]">
-      <div className="bg-[#fbf7f6] grow"></div>
-      <div className="bg-[#f4ebe6] grow"></div>
+    <DefaultPageSection>
+      <Todo1 />
+      <Todo2 />
     </DefaultPageSection>
   );
 };
