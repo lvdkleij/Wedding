@@ -1,6 +1,5 @@
 import type { MetaFunction } from '@remix-run/node';
-import Hero from '~/features/Hero/Index';
-
+import Hero from '~/features/Hero';
 import sharedStyles from '~/styles/shared.module.css';
 import InviteMessage from '~/features/InviteMessage';
 import Location from '~/features/Location';
