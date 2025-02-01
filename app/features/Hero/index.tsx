@@ -64,7 +64,7 @@ interface FloatingTextProps {
   scaleFactor: number;
 }
 
-const FloatingText: React.FC<FloatingTextProps> = ({ top, delay, text, fontSize, color, scrollY, scaleFactor }) => {
+const FloatingText: React.FC<FloatingTextProps> = ({ top, delay, text, scrollY }) => {
   const parallax = useTransform(scrollY, (value) => value * 0.1);
 
   return (

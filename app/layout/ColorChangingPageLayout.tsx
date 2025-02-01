@@ -21,7 +21,6 @@ const ColorChangingPageLayout: React.FC<ColorChangingPageLayoutProps> = ({ child
 
   useEffect(() => {
     const handleScroll = () => {
-      const windowHeight = window.innerHeight;
       const scrollTop = window.scrollY;
 
       // Calculate the total height of all sections
