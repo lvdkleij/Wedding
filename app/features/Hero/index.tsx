@@ -32,15 +32,10 @@ interface FloatingStarProps {
 }
 
 const FloatingStar: React.FC<FloatingStarProps> = ({ left, top, delay, size, scaleFactor, scrollY }) => {
-  // Calculate the star's size based on the scale factor.
   const computedSize = `${parseInt(size, 10) * scaleFactor}px`;
-  // Create a parallax effect: the star's vertical position is offset by 20% of the scroll value.
-  const parallax = useTransform(scrollY, (value) => value * 0.2);
-
+  const parallax = useTransform(scrollY, (value) => value * 0.1);
   return (
-    // Outer container applies the parallax (scroll-based) transform.
     <motion.div style={{ position: 'absolute', left, top, y: parallax }}>
-      {/* Inner image animates with a gentle floating motion. */}
       <motion.img
         src="/svgs/etoile.svg"
         alt="Etoile"
@@ -58,17 +53,53 @@ const FloatingStar: React.FC<FloatingStarProps> = ({ left, top, delay, size, sca
   );
 };
 
+interface FloatingTextProps {
+  left: string;
+  top: string;
+  delay: number;
+  text: string;
+  fontSize: string;
+  color: string;
+  scrollY: MotionValue<number>;
+  scaleFactor: number;
+}
+
+const FloatingText: React.FC<FloatingTextProps> = ({ top, delay, text, fontSize, color, scrollY, scaleFactor }) => {
+  const parallax = useTransform(scrollY, (value) => value * 0.1);
+
+  return (
+    // Parent container centres the element horizontally.
+    <div
+      style={{
+        position: 'absolute',
+        left: '50%', // Always at 50% of the parent's width.
+        top, // Use the provided top value.
+        transform: 'translateX(-50%)',
+        whiteSpace: 'nowrap',
+      }}
+    >
+      <motion.div
+        style={{ y: parallax }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay, duration: 1 }}
+      >
+        <span className="text-[#f7c1ca] text-[12vw] max-w-[30%]">{text}</span>
+      </motion.div>
+    </div>
+  );
+};
+
 const floatingStars = [
   { left: '10%', top: '10%', delay: 0, size: '40px' },
-  { left: '70%', top: '20%', delay: 0.5, size: '40px' },
+  { left: '70%', top: '20%', delay: 0.5, size: '60px' },
   { left: '30%', top: '60%', delay: 1, size: '50px' },
-  { left: '80%', top: '80%', delay: 1.5, size: '50px' },
+  { left: '80%', top: '80%', delay: 1.5, size: '70px' },
   { left: '20%', top: '70%', delay: 2, size: '30px' },
-  { left: '90%', top: '30%', delay: 2.5, size: '60px' },
+  { left: '90%', top: '30%', delay: 2.5, size: '80px' },
 ];
 
 const Index: React.FC = () => {
-  // Create a scrollY motion value to track the vertical scroll position.
   const { scrollY } = useScroll();
   const [scaleFactor, setScaleFactor] = useState(1);
 
@@ -82,34 +113,49 @@ const Index: React.FC = () => {
       setScaleFactor(computeScaleFactor(window.innerWidth));
     };
 
-    // Initial check
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
-    <DefaultPageSection className="min-h-screen w-full bg-[#f3eee8] flex flex-col items-center justify-center pt-[9rem] lg:pt-[15rem] pb-[13rem] relative">
+    <DefaultPageSection className="min-h-screen w-full bg-[#f3eee8] relative pt-[9rem] lg:pt-[15rem] pb-[13rem]">
       <div className="relative w-full h-full">
-        {/* Header text with staggered animations */}
-        <div className="relative text-center">
+        {/* Floating stars behind the text */}
+        <div className="absolute inset-0 z-0">
+          {floatingStars.map((star, index) => (
+            <FloatingStar
+              key={index}
+              left={star.left}
+              top={star.top}
+              delay={star.delay}
+              size={star.size}
+              scaleFactor={scaleFactor}
+              scrollY={scrollY}
+            />
+          ))}
+        </div>
+
+        {/* Very large, floating coloured text behind the header text */}
+        <div className="absolute inset-0 z-5">
+          <FloatingText
+            left="50%" // Not used in this implementation, the parent container centres the text.
+            top="85%" // Adjust as needed to position below the header.
+            delay={1}
+            text="A Celebration of Love"
+            fontSize="10rem" // Base font size.
+            color="#FF6F61"
+            scrollY={scrollY}
+            scaleFactor={scaleFactor}
+          />
+        </div>
+
+        {/* Header text in front */}
+        <div className="relative text-center z-10">
           {headerLines.map((line, index) => (
             <HeaderLine key={index} text={line} delay={index * 0.2} />
           ))}
         </div>
-
-        {/* Floating etoile.svg images with dynamic scaling and parallax effect */}
-        {floatingStars.map((star, index) => (
-          <FloatingStar
-            key={index}
-            left={star.left}
-            top={star.top}
-            delay={star.delay}
-            size={star.size}
-            scaleFactor={scaleFactor}
-            scrollY={scrollY}
-          />
-        ))}
       </div>
     </DefaultPageSection>
   );

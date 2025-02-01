@@ -16,7 +16,6 @@ const Index: React.FC = () => {
           </span>
         </button>
       </div>
-      {/* <div className="grow basis-0 max-w-full p-[1rem] justify-end flex relative w-full"></div> */}
     </DefaultPageSection>
   );
 };
