@@ -3,13 +3,14 @@ import DefaultPageSection from '~/layout/DefaultPageSection';
 
 const Index: React.FC = () => {
   return (
-    <DefaultPageSection className="h-screen w-full flex items-center justify-center">
-      <div className="w-full flex items-center justify-center">
-        <h1 className="text-[length:var(--step-1)] sm:text-[length:var(--step-2)] md:text-[length:var(--step-3)] lg:text-[length:var(--step-4)] w-[80%] sm:w-[75%] md:w-[70%] lg:w-[65%] text-center">
-          Hi Amandine and Max, we are Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, quia ullam
-          tenetur iste eius repellat aliquid sed pariatur, ipsa quis nostrum quam velit in ipsum atque officiis
-          molestias. Nesciunt, esse!
-        </h1>
+    <DefaultPageSection className="min-h-screen bg-[#f3eee8] flex flex-column items-center justify-center pt-[10rem] pb-[10rem] relative">
+      <div className="text-center flex relative justify-center items-center">
+        <div className="text-[6vw] max-w-[85%] sm:text-[4vw] sm:max-w-[80%] lg:text-[3vw] lg:max-w-[60%] leading-[1.4]">
+          <h1 className="relative">
+            Hi Amandine and Max, we are Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, quia ullam
+            tenetur iste eius repellat aliquid sed pariatur.
+          </h1>
+        </div>
       </div>
     </DefaultPageSection>
   );

@@ -43,6 +43,8 @@
 body > *,
 body {
   box-sizing: border-box;
+  /* font-family: 'Cinzel Decorative', system-ui; */
+  font-family: 'Dancing Script Variable', cursive;
 }
 
 .u-container {

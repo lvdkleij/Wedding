@@ -5,7 +5,7 @@ interface DefaultPageLayoutProps {
 }
 
 const DefaultPageLayout: React.FC<DefaultPageLayoutProps> = ({ children }) => {
-  return <main className="h-[100vh]">{children}</main>;
+  return <main className="w-full min-h-screen relative ">{children}</main>;
 };
 
 export default DefaultPageLayout;
