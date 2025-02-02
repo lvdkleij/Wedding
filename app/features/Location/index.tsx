@@ -1,30 +1,67 @@
 import React from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import DefaultPageSection from '~/layout/DefaultPageSection';
 
-const Index: React.FC = () => {
+const LocationSection: React.FC = () => {
+  // Get the current scroll position
+  const { scrollY } = useScroll();
+
+  // Create a parallax effect by mapping scrollY to a smaller movement value.
+  // Adjust the output range ([0, 50]) to control how much the images lag.
+  const parallaxOffset = useSpring(useTransform(scrollY, [0, 2000], [0, 50]), {
+    stiffness: 50,
+    damping: 30,
+  });
+
   return (
-    <DefaultPageSection className="min-h-screen bg-[#f3eee8] flex flex-column items-center justify-center pt-[10rem] pb-[10rem] relative">
-      <div
-        className="absolute left-0 top-0 w-full h-full"
-        style={{
-          backgroundImage: `url('/images/chatteau.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        {' '}
-      </div>
-      <div className="text-center flex relative justify-center items-center">
-        <div className="text-[6vw] max-w-[85%] sm:text-[4vw] sm:max-w-[80%] lg:text-[3vw] lg:max-w-[60%] leading-[1.4]">
-          <h1 className="relative">
-            Hi Amandine and Max, we are Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, quia ullam
-            tenetur iste eius repellat aliquid sed pariatur.
-          </h1>
-        </div>
+    <DefaultPageSection className="relative bg-white min-h-screen overflow-hidden">
+      {/* Background image: Top left with parallax container */}
+      <motion.div className="absolute w-1/4" style={{ top: '20%', left: '5%', y: parallaxOffset }}>
+        <motion.div
+          initial={{ opacity: 0, y: 50, rotate: -5 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <img
+            src="/images/chatteau.jpg" // Replace with your left image path
+            alt="Venue - top left view"
+            className="w-full h-auto rounded-lg shadow-lg"
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Background image: Bottom right with parallax container */}
+      <motion.div className="absolute w-1/4" style={{ bottom: '10%', right: '5%', y: parallaxOffset }}>
+        <motion.div
+          initial={{ opacity: 0, y: 50, rotate: 5 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <img
+            src="/images/chatteau.jpg" // Replace with your right image path
+            alt="Venue - bottom right view"
+            className="w-full h-auto rounded-lg shadow-lg"
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Text container placed at the top */}
+      <div className="relative z-10 container mx-auto pt-16 pb-8">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-6xl font-bold text-center text-gray-900 mb-6 leading-tight"
+        >
+          Our Venue
+          <br />A beautiful location in southern France
+        </motion.h1>
       </div>
     </DefaultPageSection>
   );
 };
 
-export default Index;
+export default LocationSection;
